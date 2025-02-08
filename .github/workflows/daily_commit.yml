@@ -1,23 +1,20 @@
 name: Daily Commit Workflow
 
 on:
-  # Scheduled trigger: Runs daily at 15:30 UTC (9 PM IST)
   schedule:
     - cron: "30 15 * * *"
-  
-  # Manual trigger: Allows running the workflow manually
   workflow_dispatch:
 
 jobs:
   daily-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # VERY IMPORTANT: Grants write access to the repository content
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Commit changes (mentions your email in the step name)
       - name: Commit changes by 24ds2000134@ds.study.iitm.ac.in
         run: |
           echo "Daily commit on $(date)" >> daily_commit_log.txt

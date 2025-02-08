@@ -1,9 +1,12 @@
 name: Daily Commit Workflow
 
 on:
+  # Scheduled trigger: Runs daily at 15:30 UTC (9 PM IST)
   schedule:
-    # Runs daily at 15:30 UTC (9 PM IST)
     - cron: "30 15 * * *"
+  
+  # Manual trigger: Allows running the workflow manually
+  workflow_dispatch:
 
 jobs:
   daily-commit:
@@ -14,7 +17,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Make a commit (includes your email in the step name)
+      # Step 2: Commit changes (mentions your email in the step name)
       - name: Commit changes by 24ds2000134@ds.study.iitm.ac.in
         run: |
           echo "Daily commit on $(date)" >> daily_commit_log.txt
